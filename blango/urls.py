@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from blango.api_views import post_list, post_detail
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("posts/", post_list, name="api_post_list"),
+    path("posts/<int:pk>/", post_detail, name="api_post_detail"),
+    path("api/v1/", include("blango.api_urls")),
+
 ]
